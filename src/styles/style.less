@@ -65,10 +65,6 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
 a:active {
     opacity: 50%;
 }
@@ -95,7 +91,7 @@ body {
     align-items: center;
     background-color: @color_bg_3;
     border-radius: 20px;
-
+    
     @media screen and (max-width: 550px){
         width: 360px;
     }
@@ -120,7 +116,7 @@ body {
         outline: none;
         border: none;
         background: inherit;
-
+        
         &::placeholder {
             .p-big-light-font();
             font-style: italic;
@@ -136,11 +132,15 @@ body {
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid @color_bg_2;
-
+    
     .buttons {
         display: flex;
         align-items: center;
         gap: 15px;
+        
+        a {
+            padding: 3px;
+        }
 
         a:hover {
             text-decoration: none;
@@ -157,8 +157,12 @@ body {
     justify-content: center;
     align-items: center;
     gap: 15px;
-
+    
     p {
         .p-small-font();
+    }
+    
+    a:hover {
+        text-decoration: underline;
     }
 }

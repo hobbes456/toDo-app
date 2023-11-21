@@ -15,9 +15,6 @@ a {
   color: inherit;
   text-decoration: none;
 }
-a:hover {
-  text-decoration: underline;
-}
 a:active {
   opacity: 50%;
 }
@@ -96,6 +93,9 @@ body {
   align-items: center;
   gap: 15px;
 }
+.footer .buttons a {
+  padding: 3px;
+}
 .footer .buttons a:hover {
   text-decoration: none;
   outline: 1px solid #C5D0E6;
@@ -114,4 +114,7 @@ body {
   font-size: 10px;
   font-weight: 200;
   text-shadow: 0 1px 0 #d9d9d9;
+}
+.info a:hover {
+  text-decoration: underline;
 }
