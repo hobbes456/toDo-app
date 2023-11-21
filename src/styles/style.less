@@ -86,8 +86,7 @@ body {
 }
 
 .todoapp {
-    max-width: 550px;
-    min-width: 300px;
+    width: 550px;
     height: auto;
     margin-top: 20px;
     display: flex;
@@ -96,6 +95,10 @@ body {
     align-items: center;
     background-color: @color_bg_3;
     border-radius: 20px;
+
+    @media screen and (max-width: 550px){
+        width: 360px;
+    }
 }
 
 .header {
@@ -110,9 +113,10 @@ body {
     }
     
     input {
+        position: relative;
         .p-big-dark-font();
-        flex-grow: 1;
         padding: 16px 16px 16px 60px;
+        align-self: stretch;
         outline: none;
         border: none;
         background: inherit;
@@ -120,6 +124,28 @@ body {
         &::placeholder {
             .p-big-light-font();
             font-style: italic;
+        }
+    }
+}
+
+.footer {
+    .p-normal-font();
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid @color_bg_2;
+
+    .buttons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        a:hover {
+            text-decoration: none;
+            outline: 1px solid @color_bg_2;
+            border-radius: 2px;
         }
     }
 }

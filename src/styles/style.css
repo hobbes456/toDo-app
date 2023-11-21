@@ -33,8 +33,7 @@ body {
   gap: 65px;
 }
 .todoapp {
-  max-width: 550px;
-  min-width: 300px;
+  width: 550px;
   height: auto;
   margin-top: 20px;
   display: flex;
@@ -43,6 +42,11 @@ body {
   align-items: center;
   background-color: #ffffff;
   border-radius: 20px;
+}
+@media screen and (max-width: 550px) {
+  .todoapp {
+    width: 360px;
+  }
 }
 .header {
   width: 100%;
@@ -57,12 +61,13 @@ body {
   font-weight: 200;
 }
 .header input {
+  position: relative;
   color: #4d4d4d;
   font-size: 24px;
   font-weight: 300;
   line-height: 1.2;
-  flex-grow: 1;
   padding: 16px 16px 16px 60px;
+  align-self: stretch;
   outline: none;
   border: none;
   background: inherit;
@@ -73,6 +78,28 @@ body {
   font-weight: 300;
   line-height: 1.2;
   font-style: italic;
+}
+.footer {
+  color: #7a7a7a;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.4;
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #C5D0E6;
+}
+.footer .buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.footer .buttons a:hover {
+  text-decoration: none;
+  outline: 1px solid #C5D0E6;
+  border-radius: 2px;
 }
 .info {
   width: 100%;
