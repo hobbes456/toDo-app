@@ -1,0 +1,22 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000T\u0000h\u0000i\u0000s\u0000 \u0000i\u0000s\u0000 \u0000s\u0000i\u0000m\u0000p\u0000l\u0000e\u0000 \u0000a\u0000p\u0000p\u0000 \u0000t\u0000o\u0000D\u0000o\u0000 \u0000f\u0000o\u0000r\u0000 \u0000S\u0000&\u0000P\u0000.\u0000",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx webpack --mode production",
+    "start": "npx webpack-dev-server --mode development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "html-webpack-plugin": "^5.5.3",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}
