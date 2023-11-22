@@ -82,6 +82,7 @@ body {
     width: 550px;
     height: auto;
     margin-top: 20px;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -124,6 +125,7 @@ body {
 
 .content {
     width: 100%;
+    visibility: hidden;
 
     .toggle-all,
     .item-checkbox {
@@ -133,7 +135,6 @@ body {
     .toggle-check {
         position: relative;
         color: @grey_4;
-        transition: all 0.2s ease-in-out;
         cursor: pointer;    
     }
 
@@ -182,8 +183,7 @@ body {
         height: 16px;
         border: 2px solid @grey_1;
         content: "";
-        transition-timing-function: ease-in-out;
-        transition-duration: 0.3s;
+        transition: all 0.3s ease-in-out;
     }
 
     .item-checkbox:checked~label::before {
@@ -228,12 +228,16 @@ body {
         background: inherit;
         border-top: 1px solid @color_bg_2;
     }
+
+    &_show {
+        visibility: visible;
+    }
 }
 
 .footer {
     width: 100%;
     padding: 15px;
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid @color_bg_2;
@@ -257,10 +261,15 @@ body {
             border-radius: 2px;
         }
     }
+
+    &_show {
+        display: flex;
+    }
 }
 
 .info {
     width: 100%;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;

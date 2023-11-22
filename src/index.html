@@ -18,20 +18,10 @@
             <section class="content">
                 <input class="toggle-all" id="toggle-all" type="checkbox">
                 <label class="toggle-check" for="toggle-all"></label>
-                <ul class="items-list">
-                    <li class="">
-                        <div class="item">
-                            <input class="item-checkbox" id="item-checkbox_1" type="checkbox">
-                            <label class="item-check" for="item-checkbox_1"></label>
-                            <label class="item-todo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, nam. Recusandae voluptas minima possimus tenetur vitae est fuga reiciendis similique excepturi repellendus adipisci beatae veniam quas, corporis nemo, quod non?</label>
-                            <button class="item-destroy" type="button">+</button>
-                        </div>
-                        <input class="edit" type="text">
-                    </li>
-                </ul>
+                <ul class="items-list"></ul>
             </section>
             <footer class="footer">
-                <p class="items">1 item left</p>
+                <p class="items-left"></p>
                 <div class="buttons">
                     <a href="#all">All</a>
                     <a href="#active">Active</a>
@@ -44,6 +34,17 @@
             <p>Created by <a href="https://github.com/hobbes456">Ostap Bender</a></p>
             <p>Special for <a href="https://snp.agency/ru">S&P</a></p>
         </footer>
+        <template id="task-template">
+            <li class="">
+                <div class="item">
+                    <input class="item-checkbox" id="item-checkbox" type="checkbox">
+                    <label class="item-check" for="item-checkbox"></label>
+                    <label class="item-todo"></label>
+                    <button class="item-destroy" type="button">+</button>
+                </div>
+                <input class="edit" type="text">
+            </li>
+        </template>
     </div>
 </body>
 </html>
