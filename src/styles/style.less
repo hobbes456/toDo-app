@@ -185,7 +185,7 @@ body {
         content: "";
         transition: all 0.3s ease-in-out;
     }
-
+    
     .item-checkbox:checked~label::before {
         width: 21px;
         height: 10px;
@@ -194,12 +194,18 @@ body {
         border-right-style: none;
         transform: rotate(-45deg);
     }
-
+    
+    .item-checkbox:checked~[class$="todo"] {
+        color: @grey_4;
+        text-decoration: line-through 2px;
+    }
+    
     .item-todo {
         .p-big-dark-font();
         width: 95%;
         padding: 16px 16px 16px 60px;
         word-wrap: break-word;
+        transition: all 0.3s ease-in-out;
     }
 
     .item-destroy {
@@ -228,11 +234,20 @@ body {
         background: inherit;
         border-top: 1px solid @color_bg_2;
     }
+    
+    .edited .item {
+        display: none;
+    }
+
+    .edited .edit {
+        display: block;
+    }
 
     &_show {
         visibility: visible;
     }
 }
+
 
 .footer {
     width: 100%;

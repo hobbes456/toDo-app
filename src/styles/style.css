@@ -138,6 +138,10 @@ body {
   border-right-style: none;
   transform: rotate(-45deg);
 }
+.content .item-checkbox:checked ~ [class$="todo"] {
+  color: #d9d9d9;
+  text-decoration: line-through 2px;
+}
 .content .item-todo {
   color: #4d4d4d;
   font-size: 24px;
@@ -146,6 +150,7 @@ body {
   width: 95%;
   padding: 16px 16px 16px 60px;
   word-wrap: break-word;
+  transition: all 0.3s ease-in-out;
 }
 .content .item-destroy {
   margin-right: 10px;
@@ -173,6 +178,12 @@ body {
   border: none;
   background: inherit;
   border-top: 1px solid #C5D0E6;
+}
+.content .edited .item {
+  display: none;
+}
+.content .edited .edit {
+  display: block;
 }
 .content_show {
   visibility: visible;
