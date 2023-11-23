@@ -108,6 +108,9 @@ body {
 .content .items-list li {
   display: flex;
 }
+.content .items-list .not-visible {
+  display: none;
+}
 .content .item {
   width: 100%;
   display: flex;
@@ -208,11 +211,16 @@ body {
   align-items: center;
   gap: 15px;
 }
-.footer .buttons a {
+.footer .buttons .btn {
   padding: 3px;
 }
-.footer .buttons a:hover {
+.footer .buttons .btn:hover {
   text-decoration: none;
+  outline: 1px solid #C5D0E6;
+  border-radius: 2px;
+}
+.footer .buttons .active {
+  color: #C5D0E6;
   outline: 1px solid #C5D0E6;
   border-radius: 2px;
 }

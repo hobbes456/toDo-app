@@ -159,6 +159,10 @@ body {
         li {
             display: flex;
         }
+
+        .not-visible {
+            display: none;
+        }
     }
 
     .item {
@@ -266,12 +270,18 @@ body {
         align-items: center;
         gap: 15px;
         
-        a {
+        .btn {
             padding: 3px;
         }
 
-        a:hover {
+        .btn:hover {
             text-decoration: none;
+            outline: 1px solid @color_bg_2;
+            border-radius: 2px;
+        }
+
+        .active {
+            color: @color_bg_2;
             outline: 1px solid @color_bg_2;
             border-radius: 2px;
         }

@@ -4,16 +4,20 @@ let list = document.querySelector('.items-list');
 let items = list.children;
 
 let content = document.querySelector('.content');
+let toggleAllButton = content.querySelector('.toggle-all');
+
+
 let footer = document.querySelector('.footer');
 let itemsLeft = footer.querySelector(".items-left");
-let newTodo = document.querySelector('.new-todo');
-let title = document.querySelector('.title');
+let buttons = footer.querySelector('.buttons');
+let deleteBtn = footer.querySelector('.delete-btn');
 
-let toggleAllButton = content.querySelector('.toggle-all');
+let newTodo = document.querySelector('.new-todo');
 
 let newItemTemplate = document.getElementById('task-template').content.querySelector('li');
 
 let toggleAllValid = false;
+let filter = "all";
 
 let toggleContent = () => {
     if (items.length === 0) {
@@ -26,10 +30,15 @@ let toggleContent = () => {
 };
 
 let itemsChangeLeft = () => {
+    let i = 0;
+    for (let item of items) {
+        if (item.className === 'completed') {
+            i++;
+        }
+    }
+    let itemsCount = items.length - i;
     itemsLeft.textContent =
-      items.length === 1
-        ? `${items.length} item left`
-        : `${items.length} items left`;
+        itemsCount === 1 ? `${itemsCount} item left` : `${itemsCount} items left`;
 };
 
 let newItemCreate = () => {
@@ -78,6 +87,7 @@ let newItemCreate = () => {
 
     itemCheckBox.addEventListener('change', e => {
         e.target.closest('li').classList.toggle('completed');
+        itemsChangeLeft();
     })
 
     list.append(task);
@@ -88,11 +98,33 @@ let newItemCreate = () => {
     newTodo.value = '';
 };
 
+let filteredFunction = () => {
+    for (let item of items) {
+        item.classList.remove("not-visible");
+    }
+    switch(filter) {
+        case "active":
+            for (let item of items) {
+                if (item.className === "completed") {
+                    item.classList.add("not-visible");
+                }
+            }
+            break;
+        case "completed":
+            for (let item of items) {
+                if (item.className !== "completed") {
+                    item.classList.add("not-visible");
+                }
+            }
+            break;
+    }
+}
+
 newTodo.addEventListener('blur', newItemCreate);
 
 newTodo.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
-        newTodo.blur();
+        newItemCreate();
     }
 });
 
@@ -125,22 +157,40 @@ toggleAllButton.addEventListener('change', e => {
             checkbox.closest("li").classList.remove("completed");
         }
     }
+
+    itemsChangeLeft();
 });
+
+buttons.addEventListener('click', e => {
+    if (!e.target.className === 'btn') return;
+
+    for (let button of buttons.children) {
+        button.classList.remove('active');
+    }
+
+    e.target.classList.add('active');
+    
+    if (!e.target.href) return;
+
+    filter = e.target.href.split('#').pop();
+});
+
+deleteBtn.addEventListener('click', () => {
+    Array.from(items).map(item => {
+        if (item.classList.contains("completed")) {
+            item.remove();
+        }
+    });
+    itemsChangeLeft();
+    toggleContent();
+})
+
+// setInterval(() => {
+//     filteredFunction();
+// }, 100);
 
 window.addEventListener('keydown', e => {
     if (e.key === 'q') {
-        console.log(items);
-    }
-})
-
-// 
-let i = 0;
-title.addEventListener('click', () => {
-    if (i === 20) {
-        alert('Мои поздравления вы потратили 20 кликов в пустую, как и я свое время на написание этой части шедевра! Счетчик будет скинут, поэтому можете повторить свои действия.');
-        i = 0;
-    } else {
-        i++;
+        console.log(filter, items);
     }
 });
-// 
