@@ -1,6 +1,7 @@
 import "./styles/style.css";
 
 let list = document.querySelector('.items-list');
+let li = list.querySelector('li');
 let items = list.children;
 
 let content = document.querySelector('.content');
@@ -191,6 +192,25 @@ setInterval(() => {
 
 window.addEventListener('keydown', e => {
     if (e.key === 'q') {
-        console.log(filter, items);
+        console.log(localStorage.getItem('list'));
+        console.log(items);
     }
 });
+
+let observer = new MutationObserver(() => {
+    localStorage.setItem('list', list.innerHTML);
+});
+
+observer.observe(list, {
+    childList: true,
+    subtree: true
+});
+
+window.onload = () => {
+    if (localStorage.getItem('list') !== '') {
+        list.innerHTML = localStorage.getItem('list');
+        filter = localStorage.getItem('filter');
+    }
+    toggleContent();
+    itemsChangeLeft();
+};
