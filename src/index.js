@@ -185,9 +185,9 @@ deleteBtn.addEventListener('click', () => {
     toggleContent();
 })
 
-// setInterval(() => {
-//     filteredFunction();
-// }, 100);
+setInterval(() => {
+    filteredFunction();
+}, 100);
 
 window.addEventListener('keydown', e => {
     if (e.key === 'q') {
