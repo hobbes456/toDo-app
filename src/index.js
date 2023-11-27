@@ -41,6 +41,34 @@ let itemsChangeLeft = () => {
         itemsCount === 1 ? `${itemsCount} item left` : `${itemsCount} items left`;
 };
 
+let dblclickEvent = function(e, editInput, taskDescription) {
+    e.target.closest("li").classList.add("edited");
+    editInput.value = taskDescription.textContent;
+    editInput.focus();
+};
+
+let blurEvent = function(e, editInput, taskDescription) {
+    if (editInput.value === "") {
+        editInput.closest("li").remove();
+        toggleContent();
+        itemsChangeLeft();
+    } else {
+        taskDescription.textContent = editInput.value;
+    }
+    e.target.closest("li").classList.remove("edited");
+};
+
+let keydownEvent = function(e, editInput) {
+    if (e.key === "Enter") {
+        editInput.blur();
+    }
+};
+
+let changeEvent = e => {
+    e.target.closest("li").classList.toggle("completed");
+    itemsChangeLeft();
+}
+
 let newItemCreate = () => {
     if (newTodo.value === '') return;
 
@@ -63,31 +91,19 @@ let newItemCreate = () => {
     itemCheck.htmlFor += '_' + date;
 
     taskDescription.addEventListener('dblclick', e => {
-        e.target.closest('li').classList.add('edited');
-        editInput.value = taskDescription.textContent;
-        editInput.focus();
+        dblclickEvent(e, editInput, taskDescription);
     });
 
     editInput.addEventListener('blur', e => {
-        if (editInput.value === '') {
-            editInput.closest('li').remove();
-            toggleContent();
-            itemsChangeLeft();
-        } else {
-            taskDescription.textContent = editInput.value;
-        }
-        e.target.closest("li").classList.remove("edited");
+        blurEvent(e, editInput, taskDescription);
     });
 
     editInput.addEventListener('keydown', e => {
-        if (e.key === 'Enter') {
-            editInput.blur();
-        }
+        keydownEvent(e, editInput);
     })
 
     itemCheckBox.addEventListener('change', e => {
-        e.target.closest('li').classList.toggle('completed');
-        itemsChangeLeft();
+        changeEvent(e);
     })
 
     list.append(task);
@@ -189,26 +205,43 @@ setInterval(() => {
     filteredFunction();
 }, 100);
 
-// window.addEventListener('keydown', e => {
-//     if (e.key === 'q') {
-//         console.log(localStorage.getItem('list'));
-//         console.log(items);
-//     }
-// });
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("content")) {
+        list.innerHTML = localStorage.getItem("content");
 
-// let observer = new MutationObserver(() => {
-//     localStorage.setItem('list', list.innerHTML);
-// });
+        for (let item of items) {
+            if (item.className === "completed") {
+                item.querySelector(".item-checkbox").checked = true;
+            }
 
-// observer.observe(list, {
-//     childList: true,
-//     subtree: true
-// });
+            let editInput = item.querySelector(".edit");
+            let taskDescription = item.querySelector(".item-todo");
+            let itemCheckBox = item.querySelector(".item-checkbox");
 
-// window.onload = () => {
-//     if (localStorage.getItem('list') !== '') {
-//         list.innerHTML = localStorage.getItem('list');
-//     }
-//     toggleContent();
-//     itemsChangeLeft();
-// };
+            taskDescription.addEventListener("dblclick", e => {
+                dblclickEvent(e, editInput, taskDescription);
+            });
+
+            editInput.addEventListener("blur", e => {
+                blurEvent(e, editInput, taskDescription);
+            });
+
+            editInput.addEventListener("keydown", e => {
+                keydownEvent(e, editInput);
+            })
+
+            itemCheckBox.addEventListener("change", (e) => {
+                changeEvent(e);
+            });
+        }
+
+        toggleContent();
+        itemsChangeLeft();
+    } else {
+        console.log("Пусто");
+    }
+});
+
+window.onbeforeunload = () => {
+    localStorage.setItem("content", list.innerHTML);
+}
