@@ -55,6 +55,12 @@
     box-sizing: border-box;
 }
 
+html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -65,11 +71,12 @@ a:active {
 }
 
 body {
-    width: 100%;
-    height: 100vh;
     font-family: "Roboto", sans-serif;
-    background: linear-gradient(to bottom, @color_bg_1, @color_bg_2);
+    background: linear-gradient(to bottom, @color_bg_2 25%, @color_bg_1 45%, @color_bg_1 55%, @color_bg_2 75%);
+
+    transition: all 1s ease-in-out;
 }
+
 .main {
     display: flex;
     flex-direction: column;
@@ -308,4 +315,32 @@ body {
     a:hover {
         text-decoration: underline;
     }
+}
+
+.ufo {
+    position: absolute;
+    width: 100px;
+    height: 90px;
+    z-index: 2;
+    left: 20px;
+    bottom: 20px;
+    background-color: saturate(@color_bg_2, 10%);
+    
+    mask-image: url('../asset/ufo.svg');
+    -webkit-mask-image: url('../asset/ufo.svg');
+    mask-size: 100px 90px;
+    -webkit-mask-size: 100px 90px;
+
+    transition: all 600ms ease-in-out;
+    cursor: pointer;
+
+    @media screen and (max-width: 1023.98px) {
+        display: none;       
+    }
+}
+
+.rain {
+    position: absolute;
+    left: 0;
+    top: 0;
 }

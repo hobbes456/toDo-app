@@ -1,4 +1,5 @@
 import "./styles/style.css";
+import { ufo } from "./scripts/ufo";
 
 let list = document.querySelector('.items-list');
 let items = list.children;
@@ -245,3 +246,5 @@ document.addEventListener("DOMContentLoaded", () => {
 window.onbeforeunload = () => {
     localStorage.setItem("content", list.innerHTML);
 }
+
+ufo();
