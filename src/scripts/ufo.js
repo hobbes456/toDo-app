@@ -18,19 +18,42 @@ export const ufo = () => {
 
             valid = !valid;
 
-            setInterval(() => {
+            let timer = setInterval(() => {
                 ufoTable.style.backgroundColor = generateColor();
             }, 600);
 
             const ufoWidth = parseInt(getComputedStyle(ufoTable).width);
             const ufoHeight = parseInt(getComputedStyle(ufoTable).height);
 
-            window.onclick = e => {
+            window.addEventListener("click", e => {
                 ufoTable.style.top = e.clientY - ufoHeight/2 + "px";
                 ufoTable.style.left = e.clientX - ufoWidth/2 + "px";
+            });
+
+            if (!valid) {
+                ufoTable.addEventListener("dblclick", () => {
+                    clearInterval(timer);
+    
+                    ufoTable.style.opacity = "0";
+                    ufoTable.style.cursor = "auto";
+                });
+                
+                setTimeout(() => {
+                    ufoTable.removeEventListener("dblclick", () => {
+                        clearInterval(timer);
+        
+                        ufoTable.style.opacity = "0";
+                        ufoTable.style.cursor = "auto";
+                    });
+    
+                    window.removeEventListener("click", e => {
+                        ufoTable.style.top = e.clientY - ufoHeight / 2 + "px";
+                        ufoTable.style.left = e.clientX - ufoWidth / 2 + "px";
+                    });
+                }, 2000);
             }
 
-            document.body.style.background = "#000010";
+            document.body.classList.add("dark");
 
             animateRain();
         }
