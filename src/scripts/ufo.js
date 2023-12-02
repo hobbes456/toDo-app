@@ -3,7 +3,9 @@ import { animateRain } from "./rain";
 const ufoTable = document.querySelector(".ufo");
 
 let countForStart = 0;
-let valid = true;
+
+const ufoWidth = parseInt(getComputedStyle(ufoTable).width);
+const ufoHeight = parseInt(getComputedStyle(ufoTable).height);
 
 function generateColor() {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -11,51 +13,31 @@ function generateColor() {
 
 export const ufo = () => {
     ufoTable.addEventListener("click", () => {
-        if (valid) {
-            countForStart++;
+        countForStart++;
 
-            if (countForStart !== 5) return;
+        if (countForStart !== 5) return;
 
-            valid = !valid;
+        let timer = setInterval(() => {
+            ufoTable.style.backgroundColor = generateColor();
+        }, 600);
 
-            let timer = setInterval(() => {
-                ufoTable.style.backgroundColor = generateColor();
-            }, 600);
+        window.addEventListener("click", e => {
+            ufoTable.style.top = e.clientY - ufoHeight / 2 + "px";
+            ufoTable.style.left = e.clientX - ufoWidth / 2 + "px";
+        });
 
-            const ufoWidth = parseInt(getComputedStyle(ufoTable).width);
-            const ufoHeight = parseInt(getComputedStyle(ufoTable).height);
+        setTimeout(() => {
+            ufoTable.addEventListener("dblclick", () => {
+                clearInterval(timer);
 
-            window.addEventListener("click", e => {
-                ufoTable.style.top = e.clientY - ufoHeight/2 + "px";
-                ufoTable.style.left = e.clientX - ufoWidth/2 + "px";
+                ufoTable.style.opacity = "0";
+                ufoTable.style.cursor = "auto";
+                ufoTable.style.zIndex = "-1";
             });
+        }, 5000);
 
-            if (!valid) {
-                ufoTable.addEventListener("dblclick", () => {
-                    clearInterval(timer);
-    
-                    ufoTable.style.opacity = "0";
-                    ufoTable.style.cursor = "auto";
-                });
-                
-                setTimeout(() => {
-                    ufoTable.removeEventListener("dblclick", () => {
-                        clearInterval(timer);
-        
-                        ufoTable.style.opacity = "0";
-                        ufoTable.style.cursor = "auto";
-                    });
-    
-                    window.removeEventListener("click", e => {
-                        ufoTable.style.top = e.clientY - ufoHeight / 2 + "px";
-                        ufoTable.style.left = e.clientX - ufoWidth / 2 + "px";
-                    });
-                }, 2000);
-            }
+        document.body.classList.add("dark");
 
-            document.body.classList.add("dark");
-
-            animateRain();
-        }
+        animateRain();
     });
 };
