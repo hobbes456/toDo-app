@@ -198,6 +198,11 @@ deleteBtn.addEventListener('click', () => {
             item.remove();
         }
     });
+
+    if (items.length === 0) {
+        toggleAllButton.checked = false;
+    }
+
     itemsChangeLeft();
     toggleContent();
 })
