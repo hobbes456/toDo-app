@@ -32,7 +32,10 @@ export const ufo = () => {
 
                 ufoTable.style.opacity = "0";
                 ufoTable.style.cursor = "auto";
-                ufoTable.style.zIndex = "-1";
+
+                setTimeout(() => {
+                    ufoTable.style.display = "none";
+                }, 2000);
             });
         }, 5000);
 

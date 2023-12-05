@@ -1,26 +1,26 @@
 import "./styles/style.css";
 import { ufo } from "./scripts/ufo";
 
-let list = document.querySelector('.items-list');
+const list = document.querySelector('.items-list');
 let items = list.children;
 
-let content = document.querySelector('.content');
-let toggleAllButton = content.querySelector('.toggle-all');
+const content = document.querySelector('.content');
+const toggleAllButton = content.querySelector('.toggle-all');
 
 
-let footer = document.querySelector('.footer');
-let itemsLeft = footer.querySelector(".items-left");
-let buttons = footer.querySelector('.buttons');
-let deleteBtn = footer.querySelector('.delete-btn');
+const footer = document.querySelector('.footer');
+const itemsLeft = footer.querySelector(".items-left");
+const buttons = footer.querySelector('.buttons');
+const deleteBtn = footer.querySelector('.delete-btn');
 
-let newTodo = document.querySelector('.new-todo');
+const newTodo = document.querySelector('.new-todo');
 
-let newItemTemplate = document.getElementById('task-template').content.querySelector('li');
+const newItemTemplate = document.getElementById('task-template').content.querySelector('li');
 
 let toggleAllValid = false;
 let filter = "all";
 
-let toggleContent = () => {
+const toggleContent = () => {
     if (items.length === 0) {
         content.classList.remove('content_show');
         footer.classList.remove('footer_show');
@@ -30,7 +30,7 @@ let toggleContent = () => {
     }
 };
 
-let itemsChangeLeft = () => {
+const itemsChangeLeft = () => {
     let i = 0;
     for (let item of items) {
         if (item.className === 'completed') {
@@ -42,13 +42,13 @@ let itemsChangeLeft = () => {
         itemsCount === 1 ? `${itemsCount} item left` : `${itemsCount} items left`;
 };
 
-let dblclickEvent = function(e, editInput, taskDescription) {
+const dblclickEvent = function(e, editInput, taskDescription) {
     e.target.closest("li").classList.add("edited");
     editInput.value = taskDescription.textContent;
     editInput.focus();
 };
 
-let blurEvent = function(e, editInput, taskDescription) {
+const blurEvent = function(e, editInput, taskDescription) {
     if (editInput.value === "") {
         editInput.closest("li").remove();
         toggleContent();
@@ -59,18 +59,18 @@ let blurEvent = function(e, editInput, taskDescription) {
     e.target.closest("li").classList.remove("edited");
 };
 
-let keydownEvent = function(e, editInput) {
+const keydownEvent = function(e, editInput) {
     if (e.key === "Enter") {
         editInput.blur();
     }
 };
 
-let changeEvent = e => {
+const changeEvent = e => {
     e.target.closest("li").classList.toggle("completed");
     itemsChangeLeft();
 }
 
-let newItemCreate = () => {
+const newItemCreate = () => {
     if (newTodo.value === '') return;
 
     if (!toggleAllValid) {
@@ -78,14 +78,14 @@ let newItemCreate = () => {
         toggleAllValid = !toggleAllValid;
     }
 
-    let taskText = newTodo.value;
-    let task = newItemTemplate.cloneNode(true);
-    let taskDescription = task.querySelector('.item-todo');
-    let itemCheckBox = task.querySelector('.item-checkbox');
-    let itemCheck = task.querySelector('.item-check');
-    let editInput = task.querySelector('.edit');
+    const taskText = newTodo.value;
+    const task = newItemTemplate.cloneNode(true);
+    const taskDescription = task.querySelector('.item-todo');
+    const itemCheckBox = task.querySelector('.item-checkbox');
+    const itemCheck = task.querySelector('.item-check');
+    const editInput = task.querySelector('.edit');
 
-    let date = Date.now();
+    const date = Date.now();
 
     taskDescription.textContent = taskText;
     itemCheckBox.id += '_' + date;
@@ -115,7 +115,7 @@ let newItemCreate = () => {
     newTodo.value = '';
 };
 
-let filteredFunction = () => {
+const filteredFunction = () => {
     for (let item of items) {
         item.classList.remove("not-visible");
     }
@@ -161,7 +161,7 @@ toggleAllButton.addEventListener('change', e => {
         e.target.checked = false;
     }
 
-    let allCheckBoxesInItemsList = list.querySelectorAll('.item-checkbox');
+    const allCheckBoxesInItemsList = list.querySelectorAll('.item-checkbox');
 
     if (e.target.checked) {
         for (let checkbox of allCheckBoxesInItemsList) {
@@ -220,9 +220,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 item.querySelector(".item-checkbox").checked = true;
             }
 
-            let editInput = item.querySelector(".edit");
-            let taskDescription = item.querySelector(".item-todo");
-            let itemCheckBox = item.querySelector(".item-checkbox");
+            const editInput = item.querySelector(".edit");
+            const taskDescription = item.querySelector(".item-todo");
+            const itemCheckBox = item.querySelector(".item-checkbox");
 
             taskDescription.addEventListener("dblclick", e => {
                 dblclickEvent(e, editInput, taskDescription);
@@ -243,8 +243,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         toggleContent();
         itemsChangeLeft();
-    } else {
-        console.log("Пусто");
     }
 });
 
