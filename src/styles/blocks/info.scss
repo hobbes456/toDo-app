@@ -1,0 +1,27 @@
+.info {
+    margin-bottom: 50px;
+
+    @include flex_column_center;
+    gap: 15px;
+    width: 100%;
+
+    &__text {
+        @include p-small-font;
+        color: $grey_2;
+    }
+
+    &__link {
+        text-decoration: underline;
+        text-decoration-color: transparent;
+
+        transition: text-decoration-color 150ms ease-in-out;
+
+        &:hover {
+            text-decoration-color: inherit;
+        }
+
+        &:active {
+            opacity: 0.8;
+        }
+    }
+}

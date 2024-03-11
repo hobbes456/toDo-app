@@ -1,4 +1,4 @@
-let canvas = document.getElementsByClassName('rain')[0];
+const canvas = document.getElementsByClassName("stars")[0];
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -8,7 +8,7 @@ function randomNum(max, min) {
 	return Math.floor(Math.random() * max) + min;
 }
 
-function RainDrops(x, y, endy, velocity, opacity) {
+function Stars(x, y, endy, velocity, opacity) {
 
 	this.x = x;
 	this.y = y;
@@ -26,35 +26,32 @@ function RainDrops(x, y, endy, velocity, opacity) {
 	}
 
 	this.update = function() {
-		let rainEnd = window.innerHeight + 100;
-		if (this.y >= rainEnd) {
+		let starsEnd = window.innerHeight + 100;
+		if (this.y >= starsEnd) {
 			this.y = this.endy - 100;
 		} else {
 			this.y = this.y + this.velocity;
 		}
 		this.draw();
 	}
-
 }
 
-let rainArray = [];
+const starsArray = [];
 
 for (let i = 0; i < 500; i++) {
-	let rainXLocation = Math.floor(Math.random() * window.innerWidth) + 1;
-	let rainYLocation = Math.random() * -500;
-	let randomRainHeight = randomNum(10, 2);
+	let starsXLocation = Math.floor(Math.random() * window.innerWidth) + 1;
+	let starsYLocation = Math.random() * -500;
+	let randomStarsHeight = randomNum(10, 2);
 	let randomSpeed = randomNum(20, .2);
 	let randomOpacity = Math.random() * .55;
-	rainArray.push(new RainDrops(rainXLocation, rainYLocation, randomRainHeight, randomSpeed, randomOpacity));
+	starsArray.push(new Stars(starsXLocation, starsYLocation, randomStarsHeight, randomSpeed, randomOpacity));
 }
 
-export function animateRain() {
-
-	requestAnimationFrame(animateRain);
+export function starsMoving() {
+	requestAnimationFrame(starsMoving);
 	c.clearRect(0,0, window.innerWidth, window.innerHeight);
 
-	for (let i = 0; i < rainArray.length; i++) {
-		rainArray[i].update();
+	for (let i = 0; i < starsArray.length; i++) {
+		starsArray[i].update();
 	}
-
 }

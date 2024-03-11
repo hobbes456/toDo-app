@@ -1,0 +1,28 @@
+.ufo {
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    bottom: 20px;
+
+    width: 100px;
+    height: 90px;
+
+    background-color: saturate($main, 25%);
+
+    mask-image: url("/src/asset/ufo.svg");
+    -webkit-mask-image: url("/src/asset//ufo.svg");
+    mask-size: 100px 90px;
+    -webkit-mask-size: 100px 90px;
+
+    cursor: pointer;
+
+    transition: 
+        top 600ms ease-in-out,
+        left 600ms ease-in-out,
+        opacity 600ms ease-in-out,
+        background-color 600ms ease-in-out;
+
+    @include _1024 {
+        display: none;
+    }
+}

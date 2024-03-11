@@ -1,13 +1,11 @@
-import { animateRain } from "./rain";
+import { generateColor } from "./generateColor";
+import { starsMoving } from "./starsMoving";
 
 const ufoTable = document.querySelector(".ufo");
+const appTitle = document.querySelector(".app__title");
 
 let countForStart = 0;
 let valid = true;
-
-function generateColor() {
-    return "#" + Math.floor(Math.random() * 16777215).toString(16);
-}
 
 export const ufo = () => {
     ufoTable.addEventListener("click", () => {
@@ -18,8 +16,12 @@ export const ufo = () => {
 
             valid = !valid;
 
+
             let timer = setInterval(() => {
-                ufoTable.style.backgroundColor = generateColor();
+                let color = generateColor();
+
+                ufoTable.style.backgroundColor = color;
+                appTitle.style.color = color;
             }, 600);
 
             const ufoWidth = parseInt(getComputedStyle(ufoTable).width);
@@ -30,32 +32,21 @@ export const ufo = () => {
                 ufoTable.style.left = e.clientX - ufoWidth/2 + "px";
             });
 
-            if (!valid) {
+            setTimeout(() => {
                 ufoTable.addEventListener("dblclick", () => {
                     clearInterval(timer);
     
+                    ufoTable.style.zIndex = "-1";
                     ufoTable.style.opacity = "0";
                     ufoTable.style.cursor = "auto";
-                });
-                
-                setTimeout(() => {
-                    ufoTable.removeEventListener("dblclick", () => {
-                        clearInterval(timer);
-        
-                        ufoTable.style.opacity = "0";
-                        ufoTable.style.cursor = "auto";
-                    });
-    
-                    window.removeEventListener("click", e => {
-                        ufoTable.style.top = e.clientY - ufoHeight / 2 + "px";
-                        ufoTable.style.left = e.clientX - ufoWidth / 2 + "px";
-                    });
-                }, 2000);
-            }
 
+                    appTitle.style.color = "#C5D0E6";
+                });
+            }, 2000);
+            
             document.body.classList.add("dark");
 
-            animateRain();
+            starsMoving();
         }
     });
 };

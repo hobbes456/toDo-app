@@ -1,11 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        loader: path.resolve(__dirname, 'src/loader.js'),
+        index: path.resolve(__dirname, 'src/index.js'),
+    },
     output: {
-        filename: 'script.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
         assetModuleFilename: pathData => {
@@ -16,23 +20,24 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin(
             {
-                template: "./src/index.html"
+                template: path.resolve(__dirname, "./src/index.html"),
             }
         ),
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, "./src/asset/favicon.png"),
-                    to: path.resolve(__dirname, "dist"),
+                    from: path.resolve(__dirname, "./src/asset/"),
+                    to: path.resolve(__dirname, "dist/asset"),
                 },
             ],
         }),
+        new MiniCssExtractPlugin(),
     ],
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                test: /\.(s[ac]ss|css)$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader',],
             },
             {
                 test: /\.(png|jpg|svg|gif)$/,

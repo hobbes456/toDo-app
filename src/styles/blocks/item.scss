@@ -1,0 +1,102 @@
+.item {
+    &__template {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    
+        border-top: 1px solid $main;
+    }
+
+    input[type="checkbox"]:checked~.item__checkbox::before {
+        width: 21px;
+        height: 10px;
+
+        border-color: $main;
+        border-top-style: none;
+        border-right-style: none;
+
+        transform: rotate(-45deg);
+    }
+
+    input[type="checkbox"]:checked~.item__content {
+        color: $grey_4;
+
+        text-decoration: line-through 2px;
+    }
+
+    &__checkbox {
+        position: relative;
+
+        cursor: pointer;
+
+        &::before {
+            position: absolute;
+            top: -10px;
+            left: 25px;
+            z-index: 1;
+
+            width: 16px;
+            height: 16px;
+
+            border: 2px solid $grey_1;
+
+            content: "";
+
+            transition:
+                color 300ms ease-in-out,
+                transform 300ms ease-in-out;
+        }
+    }
+    
+    &__content {
+        @include item_content_edit;
+        @include p-big-font;
+
+        overflow: hidden;
+
+        transition: all 300ms ease-in-out;
+        cursor: pointer;
+    }
+
+    &__button {
+        margin-right: 10px;
+
+        font-size: 24px;
+        color: $red_1;
+
+        background: inherit;
+        border: none;
+
+        transition: filter 100ms ease-in-out;
+        transform: rotate(45deg);
+        cursor: pointer;
+        filter: opacity(0.2);
+
+        &:hover {
+            filter: opacity(1);
+        }
+    }
+
+    &__edit {
+        display: none;
+        width: 100%;
+
+        & > input {
+            @include item_content_edit;
+        }
+
+        border-top: 1px solid $main;
+
+        cursor: pointer;
+    }
+
+    &_edited {
+        & > .item__template {
+            display: none;
+        }
+        
+        & > .item__edit {
+            display: flex;
+        }
+    }
+}
