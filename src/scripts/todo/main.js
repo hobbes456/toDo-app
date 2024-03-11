@@ -136,5 +136,3 @@ document.addEventListener("DOMContentLoaded", () => {
 window.onbeforeunload = () => {
     localStorage.setItem("content", itemsList.innerHTML);
 };
-
-// ufo();
