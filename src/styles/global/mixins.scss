@@ -1,0 +1,62 @@
+@mixin _1024 {
+    @media screen and (max-width: $viewport1024) {
+        @content;
+    }
+}
+
+@mixin _550 {
+    @media screen and (max-width: $viewport550) {
+        @content;
+    }
+}
+
+@mixin roboto-medium {
+    font-style: normal;
+    font-family: "Roboto-Medium", sans-serif;
+    word-wrap: break-word;
+}
+
+@mixin h1-font {
+    @include roboto-medium;
+    font-size: 96px;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+@mixin p-big-font {
+    @include roboto-medium;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 122%;
+    word-wrap: break-word;
+}
+
+@mixin p-normal-font {
+    @include roboto-medium;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 142%;
+    word-wrap: break-word;
+}
+
+@mixin p-small-font {
+    @include roboto-medium();
+    font-size: 10px;
+    font-weight: 200;
+    line-height: 142%;
+    word-wrap: break-word;
+}
+
+@mixin flex_column_center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin item_content_edit {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 16px 16px 16px 60px;
+}

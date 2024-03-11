@@ -7,49 +7,59 @@
     <meta name="description" content="Simple toDo app">
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
     <title>todos app</title>
-    <link rel="icon" href="favicon.png" type="image/icon">
+    <link rel="icon" href="./asset/favicon.png" type="image/icon">
 </head>
 <body>
+    <div id="app-loading">
+        <div class="loading-dots">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
     <div class="main">  
-        <section class="todoapp">
-            <header class="header">
-                <h1 class="title">todos</h1>
-                <input class="new-todo" type="text" placeholder="What needs to be done?" autofocus=""/>
+        <section class="app">
+            <header class="app__header">
+                <h1 class="app__title">todos</h1>
+                <input type="text" placeholder="What needs to be done?" autofocus=""/>
             </header>
-            <section class="content">
-                <input class="toggle-all" id="toggle-all" type="checkbox">
-                <label class="toggle-check" for="toggle-all"></label>
-                <ul class="items-list"></ul>
+            <section class="app__content">
+                <input id="toggle-all" type="checkbox">
+                <label class="app__toggle-all" for="toggle-all"></label>
+                <ul class="app__items-list"></ul>
             </section>
-            <footer class="footer">
-                <p class="items-left"></p>
-                <div class="buttons">
-                    <a class="btn active" href="#all">All</a>
-                    <a class="btn" href="#active">Active</a>
-                    <a class="btn" href="#completed">Completed</a>
+            <footer class="app__footer">
+                <p class="app__items-left"></p>
+                <div class="app__buttons">
+                    <a class="app__button app__button_active" href="#all">All</a>
+                    <a class="app__button" href="#active">Active</a>
+                    <a class="app__button" href="#completed">Completed</a>
                 </div>
-                <a class="delete-btn" href="#delete-btn">Clear Completed</a>
+                <a class="app__clear-button" href="#delete-btn">Clear Completed</a>
             </footer>
         </section>
-        <footer class="info">
-            <p>Double-click to edit a todo</p>
-            <p>Created by <a href="https://github.com/hobbes456">Ostap Bender</a></p>
-            <p>Special for <a href="https://snp.agency/ru">S&P</a></p>
-            <p>Aliens are always watching people</p>
-        </footer>
+        <div class="info">
+            <p class="info__text">Double-click to edit a todo</p>
+            <p class="info__text">Created by <a class="info__link" href="https://github.com/hobbes456">Ostap Bender</a></p>
+            <p class="info__text">Special for <a class="info__link" href="https://snp.agency/ru">S&P</a></p>
+            <p class="info__text">Aliens are always watching people</p>
+        </div>
         <template id="task-template">
-            <li class="">
-                <div class="item">
-                    <input class="item-checkbox" id="item-checkbox" type="checkbox">
-                    <label class="item-check" for="item-checkbox"></label>
-                    <label class="item-todo"></label>
-                    <button class="item-destroy" type="button">+</button>
+            <li class="item">
+                <div class="item__template">
+                    <input id="item-checkbox" type="checkbox">
+                    <label class="item__checkbox" for="item-checkbox"></label>
+                    <label class="item__content"></label>
+                    <button class="item__button" type="button">+</button>
                 </div>
-                <input class="edit" type="text">
+                <div class="item__edit">
+                    <input type="text">
+                </div>
             </li>
         </template>
-        <div class="ufo"></div>
-        <canvas class="rain"></canvas>
     </div>
+    <div class="ufo"></div>
+    <canvas class="stars"></canvas>
 </body>
 </html>
