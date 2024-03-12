@@ -52,8 +52,6 @@
         @include item_content_edit;
         @include p-big-font;
 
-        overflow: hidden;
-
         transition: all 300ms ease-in-out;
         cursor: pointer;
     }

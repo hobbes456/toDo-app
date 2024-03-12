@@ -1,5 +1,5 @@
 export const blurEvent = (e, itemEditInput, itemContent) => {
-    if (itemEditInput.value === "") {
+    if (itemEditInput.value.trim() === "") {
         itemEditInput.closest(".item").remove();
     } else {
         itemContent.textContent = itemEditInput.value;

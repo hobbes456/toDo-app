@@ -30,7 +30,9 @@ textInput.addEventListener("blur", () => {
         itemTemplate,
         itemsList,
         items,
-        itemsLeft);
+        itemsLeft,
+        content,
+        footer);
 
     contentShow(items, content, footer, toggleAllValid);
     countItemsLeft(items, itemsLeft);
@@ -47,12 +49,16 @@ textInput.addEventListener("keydown", e => {
             itemTemplate,
             itemsList,
             items,
-            itemsLeft
-        );
+            itemsLeft,
+            content,
+            footer);
         
         contentShow(items, content, footer, toggleAllValid);
         countItemsLeft(items, itemsLeft);
         filter(items, filterSetting);
+    } 
+    else if (e.key === "Escape") {
+        textInput.value = "";
     }
 });
 
@@ -126,7 +132,7 @@ clearButton.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    localStorageF(itemsList, itemsLeft);
+    localStorageF(itemsList, itemsLeft, content, footer, toggleAllValid);
 
     contentShow(items, content, footer, toggleAllValid);
     countItemsLeft(items, itemsLeft);

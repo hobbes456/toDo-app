@@ -29,6 +29,7 @@
     font-weight: 300;
     line-height: 122%;
     word-wrap: break-word;
+    word-break: break-all;
 }
 
 @mixin p-normal-font {
@@ -37,6 +38,7 @@
     font-weight: 300;
     line-height: 142%;
     word-wrap: break-word;
+    word-break: break-all;
 }
 
 @mixin p-small-font {

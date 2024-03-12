@@ -2,8 +2,10 @@ import { doubleClickEvent } from "./doubleClickEvent";
 import { blurEvent } from "./blurEvent";
 import { keydownEvent } from "./keydownEvent";
 import { changeEvent } from "./changeEvent";
+import { countItemsLeft } from "./countItemsLeft";
+import { contentShow } from "./contentShow";
 
-export const localStorageF = (itemsList, itemsLeft) => {
+export const localStorageF = (itemsList, itemsLeft, content, footer, toggleAllValid) => {
     if (localStorage.getItem("content")) {
         itemsList.innerHTML = localStorage.getItem("content");
 
@@ -22,10 +24,18 @@ export const localStorageF = (itemsList, itemsLeft) => {
 
             itemEditInput.addEventListener("blur", e => {
                 blurEvent(e, itemEditInput, itemContent);
+
+                countItemsLeft(itemsList.children, itemsLeft);
+                contentShow(
+                    itemsList.children,
+                    content,
+                    footer,
+                    toggleAllValid
+                );
             });
 
             itemEditInput.addEventListener("keydown", e => {
-                keydownEvent(e, itemEditInput);
+                keydownEvent(e, itemEditInput, itemContent);
             });
 
             inputCheckbox.addEventListener("change", e => {
