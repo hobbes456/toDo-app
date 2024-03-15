@@ -5,7 +5,7 @@ import { changeEvent } from "./changeEvent";
 import { countItemsLeft } from "./countItemsLeft";
 import { contentShow } from "./contentShow";
 
-export const localStorageF = (itemsList, itemsLeft, content, footer, toggleAllValid) => {
+export const localStorageF = (itemsList, itemsLeft, content, footer, states) => {
     if (localStorage.getItem("content")) {
         itemsList.innerHTML = localStorage.getItem("content");
 
@@ -18,28 +18,28 @@ export const localStorageF = (itemsList, itemsLeft, content, footer, toggleAllVa
             let itemContent = item.querySelector(".item__content");
             let inputCheckbox = item.querySelector("input[type='checkbox']");
 
-            itemContent.addEventListener("dblclick", e => {
-                doubleClickEvent(e, itemEditInput, itemContent);
+            itemContent.addEventListener("dblclick", event => {
+                doubleClickEvent(event, itemEditInput, itemContent);
             });
 
-            itemEditInput.addEventListener("blur", e => {
-                blurEvent(e, itemEditInput, itemContent);
+            itemEditInput.addEventListener("blur", event => {
+                blurEvent(event, itemEditInput, itemContent);
 
                 countItemsLeft(itemsList.children, itemsLeft);
                 contentShow(
                     itemsList.children,
                     content,
                     footer,
-                    toggleAllValid
+                    states
                 );
             });
 
-            itemEditInput.addEventListener("keydown", e => {
-                keydownEvent(e, itemEditInput, itemContent);
+            itemEditInput.addEventListener("keydown", event => {
+                keydownEvent(event, itemEditInput, itemContent);
             });
 
-            inputCheckbox.addEventListener("change", e => {
-                changeEvent(e, itemsList.children, itemsLeft);
+            inputCheckbox.addEventListener("change", event => {
+                changeEvent(event, itemsList.children, itemsLeft);
             });
         }
     } else {

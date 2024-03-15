@@ -1,5 +1,5 @@
-export const keydownEvent = (e, itemEditInput, itemContent) => {
-    switch (e.key) {
+export const keydownEvent = (event, itemEditInput, itemContent) => {
+    switch (event.key) {
         case "Enter":
             itemEditInput.blur();
         break;

@@ -1,9 +1,8 @@
-export const filter = (items, filterSetting) => {
-    for (let item of items) {
-        item.style.display = "flex";
-    }
+export const filter = (items, states) => {
 
-    switch (filterSetting) {
+    Array.from(items).forEach(item => item.style.display = "flex");
+
+    switch (states.filterSetting) {
         case "active":
             for (let item of items) {
                 if (item.classList.contains("item_completed")) {

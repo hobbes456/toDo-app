@@ -1,14 +1,8 @@
 export const countItemsLeft = (items, itemsLeft) => {
-    let count = 0;
-
-    for (let item of items) {
-        if(item.classList.contains("item_completed")) {
-            count++;
-        }
-    }
-
-    let itemsCount = items.length - count;
+    let count = Array.from(items).filter(
+        item => !item.classList.contains("item_completed")
+    ).length;
 
     itemsLeft.textContent = 
-        itemsCount === 1 ? `${itemsCount} item left` : `${itemsCount} items left`;
+        count === 1 ? `${count} item left` : `${count} items left`;
 }

@@ -5,12 +5,12 @@ import { changeEvent } from "./changeEvent";
 import { countItemsLeft } from "./countItemsLeft";
 import { contentShow } from "./contentShow";
 
-export const newItemCreate = (textInput, toggleAllValid, toggleAllButton, itemTemplate, itemsList, items, itemsLeft, content, footer) => {
+export const newItemCreate = (textInput, states, toggleAllButton, itemTemplate, itemsList, items, itemsLeft, content, footer) => {
     if (textInput.value.trim() === "") return;
 
-    if (!toggleAllValid) {
-        toggleAllButton.checked = toggleAllValid;
-        toggleAllValid = !toggleAllValid;
+    if (!states.toggleAllValid) {
+        toggleAllButton.checked = states.toggleAllValid;
+        states.toggleAllValid = !states.toggleAllValid;
     }
 
     const newItem = itemTemplate.cloneNode(true);
@@ -25,23 +25,23 @@ export const newItemCreate = (textInput, toggleAllValid, toggleAllButton, itemTe
     itemCheckbox.id += "_" + id;
     itemForCheckbox.htmlFor += "_" + id;
 
-    itemContent.addEventListener("dblclick", e => {
-        doubleClickEvent(e, itemEditInput, itemContent);
+    itemContent.addEventListener("dblclick", event => {
+        doubleClickEvent(event, itemEditInput, itemContent);
     })
 
-    itemEditInput.addEventListener("blur", e => {
-        blurEvent(e, itemEditInput, itemContent);
+    itemEditInput.addEventListener("blur", event => {
+        blurEvent(event, itemEditInput, itemContent);
 
         countItemsLeft(items, itemsLeft);
-        contentShow(items, content, footer, toggleAllValid);
+        contentShow(items, content, footer, states);
     })
 
-    itemEditInput.addEventListener("keydown", e => {
-        keydownEvent(e, itemEditInput, itemContent);
+    itemEditInput.addEventListener("keydown", event => {
+        keydownEvent(event, itemEditInput, itemContent);
     });
 
-    itemCheckbox.addEventListener("change", e => {
-        changeEvent(e, items, itemsLeft);
+    itemCheckbox.addEventListener("change", event => {
+        changeEvent(event, items, itemsLeft);
     })
 
     itemsList.prepend(newItem);

@@ -27,9 +27,9 @@ export const ufo = () => {
             const ufoWidth = parseInt(getComputedStyle(ufoTable).width);
             const ufoHeight = parseInt(getComputedStyle(ufoTable).height);
 
-            window.addEventListener("click", e => {
-                ufoTable.style.top = e.clientY - ufoHeight/2 + "px";
-                ufoTable.style.left = e.clientX - ufoWidth/2 + "px";
+            window.addEventListener("click", event => {
+                ufoTable.style.top = event.clientY - ufoHeight/2 + "px";
+                ufoTable.style.left = event.clientX - ufoWidth/2 + "px";
             });
 
             setTimeout(() => {

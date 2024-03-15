@@ -1,3 +1,5 @@
+import { states } from "./states";
+
 import { contentShow } from "./contentShow";
 import { countItemsLeft } from "./countItemsLeft";
 import { newItemCreate } from "./newItemCreate";
@@ -19,13 +21,20 @@ const textInput = document.querySelector(".app__header input");
 
 const itemTemplate = document.getElementById("task-template").content.querySelector(".item");
 
-let toggleAllValid = false;
-let filterSetting = "all";
+textInput.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        textInput.blur();
+        textInput.focus();
+    } 
+    else if (event.key === "Escape") {
+        textInput.value = "";
+    }
+});
 
 textInput.addEventListener("blur", () => {
     newItemCreate
         (textInput,
-        toggleAllValid,
+        states,
         toggleAllButton,
         itemTemplate,
         itemsList,
@@ -34,61 +43,39 @@ textInput.addEventListener("blur", () => {
         content,
         footer);
 
-    contentShow(items, content, footer, toggleAllValid);
+    contentShow(items, content, footer, states);
     countItemsLeft(items, itemsLeft);
-    filter(items, filterSetting);
-}
+    filter(items, states);
+    }
 );
 
-textInput.addEventListener("keydown", e => {
-    if (e.key === "Enter") {
-        newItemCreate(
-            textInput,
-            toggleAllValid,
-            toggleAllButton,
-            itemTemplate,
-            itemsList,
-            items,
-            itemsLeft,
-            content,
-            footer);
-        
-        contentShow(items, content, footer, toggleAllValid);
-        countItemsLeft(items, itemsLeft);
-        filter(items, filterSetting);
-    } 
-    else if (e.key === "Escape") {
-        textInput.value = "";
-    }
-});
-
-itemsList.addEventListener("click", e => {
+itemsList.addEventListener("click", event => {
     if (items.length === 1) {
-        toggleAllValid = !toggleAllValid;
+        states.toggleAllValid = !states.toggleAllValid;
     }
 
-    if (e.target.className === "item__button") {
-        e.target.closest(".item").remove();
+    if (event.target.className === "item__button") {
+        event.target.closest(".item").remove();
 
-        contentShow(items, content, footer, toggleAllValid);
+        contentShow(items, content, footer, states);
         countItemsLeft(items, itemsLeft);
     }
 
-    if (e.target.type === "checkbox") {
+    if (event.target.type === "checkbox") {
         setTimeout(() => {
-            filter(items, filterSetting);
+            filter(items, states);
         }, 150);
     }
 });
 
-toggleAllButton.addEventListener("change", e => {
+toggleAllButton.addEventListener("change", event => {
     if (items.length === 0) {
-        e.target.checked = false;
+        event.target.checked = false;
     }
 
     let allCheckboxes = itemsList.querySelectorAll("input[type='checkbox']");
   
-    if (e.target.checked) {
+    if (event.target.checked) {
         for (let checkbox of allCheckboxes) {
             checkbox.checked = true;
             checkbox.closest(".item").classList.add("item_completed");
@@ -101,23 +88,23 @@ toggleAllButton.addEventListener("change", e => {
     }
 
     countItemsLeft(items, itemsLeft);
-    filter(items, filterSetting);
+    filter(items, states);
 });
 
-buttons.addEventListener("click", e => {
-    if (!e.target.classList.contains("app__button")) return;
+buttons.addEventListener("click", event => {
+    if (!event.target.classList.contains("app__button")) return;
 
     for (let button of buttons.children) {
         button.classList.remove("app__button_active");
     }
 
-    e.target.classList.add("app__button_active");
+    event.target.classList.add("app__button_active");
 
-    if (!e.target.href) return;
+    if (!event.target.href) return;
 
-    filterSetting = e.target.href.split("#").pop();
+    states.filterSetting = event.target.href.split("#").pop();
 
-    filter(items, filterSetting);
+    filter(items, states);
 });
 
 clearButton.addEventListener("click", () => {
@@ -128,15 +115,15 @@ clearButton.addEventListener("click", () => {
     });
 
     countItemsLeft(items, itemsLeft);
-    contentShow(items, content, footer, toggleAllValid);
+    contentShow(items, content, footer, states);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    localStorageF(itemsList, itemsLeft, content, footer, toggleAllValid);
+    localStorageF(itemsList, itemsLeft, content, footer, states);
 
-    contentShow(items, content, footer, toggleAllValid);
+    contentShow(items, content, footer, states);
     countItemsLeft(items, itemsLeft);
-    filter(items, filterSetting);
+    filter(items, states);
 });
 
 window.onbeforeunload = () => {

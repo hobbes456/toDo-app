@@ -38,7 +38,7 @@ function Stars(x, y, endy, velocity, opacity) {
 
 const starsArray = [];
 
-for (let i = 0; i < 500; i++) {
+for (let index = 0; index < 500; index++) {
 	let starsXLocation = Math.floor(Math.random() * window.innerWidth) + 1;
 	let starsYLocation = Math.random() * -500;
 	let randomStarsHeight = randomNum(10, 2);
@@ -51,7 +51,7 @@ export function starsMoving() {
 	requestAnimationFrame(starsMoving);
 	c.clearRect(0,0, window.innerWidth, window.innerHeight);
 
-	for (let i = 0; i < starsArray.length; i++) {
-		starsArray[i].update();
+	for (let index = 0; index < starsArray.length; index++) {
+		starsArray[index].update();
 	}
 }
