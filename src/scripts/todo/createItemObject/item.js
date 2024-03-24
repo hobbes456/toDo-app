@@ -1,7 +1,9 @@
 export class Item {
     constructor(text) {
-        this.completed = false;
+        this.isCompleted = false;
         this.text = text;
         this.time = Date.now();
+        
+        this.date = new Date();
     }
 }

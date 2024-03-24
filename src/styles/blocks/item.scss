@@ -18,12 +18,6 @@
         transform: rotate(-45deg);
     }
 
-    input[type="checkbox"]:checked~.item__content {
-        color: $grey_4;
-
-        text-decoration: line-through 2px;
-    }
-
     &__checkbox {
         position: relative;
 
@@ -86,6 +80,14 @@
         border-top: 1px solid $main;
 
         cursor: pointer;
+    }
+
+    &_completed {
+        input[type="checkbox"]:checked~.item__content {
+            color: $grey_4;
+                
+            text-decoration: line-through 2px;
+        }
     }
 
     &_edited {
