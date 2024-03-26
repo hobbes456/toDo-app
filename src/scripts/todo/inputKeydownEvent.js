@@ -1,12 +1,13 @@
 export const inputKeydownEvent = (event, states) => {
     const textInput = states.blocks.textInput;
+    const {key} = event;
 
-    if (event.key === "Enter") {
+    if (key === "Enter") {
         textInput.blur();
         textInput.focus();
     }
     
-    if (event.key === "Escape") {
+    if (key === "Escape") {
         textInput.value = "";
     }
 }

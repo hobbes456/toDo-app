@@ -8,6 +8,14 @@ export const states = {
             return this.header.querySelector("input");
         },
 
+        get toggleAllInput() {
+            return this.content.querySelector("#toggle-all");
+        },
+
+        get toggleAllButton() {
+            return this.content.querySelector(".app__toggle-all");
+        },
+
         get itemsList() {
             return this.content.querySelector(".app__items-list");
         },
@@ -16,12 +24,18 @@ export const states = {
             return this.footer.querySelector("p");
         },
 
+        get buttons() {
+            return this.footer.querySelector(".app__buttons");
+        },
+
         get clearButton() {
             return this.footer.querySelector(".app__clear-button");
         }
     },
 
+    filter: "all",
+
     items: [],
 
-    isShow: false,
+    isShow: false
 }

@@ -3,7 +3,6 @@ export class Item {
         this.isCompleted = false;
         this.text = text;
         this.time = Date.now();
-        
         this.date = new Date();
     }
 }

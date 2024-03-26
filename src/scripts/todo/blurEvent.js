@@ -12,11 +12,9 @@ export const blurEvent = states => {
         return;
     }
 
-    items.push(item);
+    items.unshift(item);
 
-    items.length < 1
-        ? itemsList.prepend(...renderItems(items))
-        : itemsList.prepend(...renderItems([items[items.length - 1]]));
+    itemsList.prepend(...renderItems([items[0]]));
 
     textInput.value = "";
 }

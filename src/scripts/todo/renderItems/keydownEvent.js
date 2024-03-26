@@ -1,13 +1,15 @@
 export const keydownEvent = event => {
-    if (event.key === "Enter") {
-        event.target.blur();
+    const {key, target} = event;
+
+    if (key === "Enter") {
+        target.blur();
     }
 
-    if (event.key === "Escape") {
-        const itemContent = event.target.closest(".item")
+    if (key === "Escape") {
+        const itemContent = target.closest(".item")
             .querySelector(".item__content");
 
-        event.target.value = itemContent.textContent;
-        event.target.blur();
+        target.value = itemContent.textContent;
+        target.blur();
     }
 }
