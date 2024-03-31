@@ -8,8 +8,10 @@ body {
 
     transition: background-color 1000ms ease-in-out;
 
-    &.dark {
+    &.ufo-active {
         background-color: $ufo_bg_color;
+
+        filter: drop-shadow(0 0 10px $white);
     }
 }
 

@@ -1,52 +1,54 @@
+import { states } from "./states";
 import { generateColor } from "./generateColor";
-import { starsMoving } from "./starsMoving";
+import {createStars} from "./createStars";
+import {deleteStars} from "./deleteStars";
 
-const ufoTable = document.querySelector(".ufo");
-const appTitle = document.querySelector(".app__title");
+const {blocks} = states;
+const {ufo, title} = blocks;
+let {countForStart, isShow} = states;
 
-let countForStart = 0;
-let valid = true;
+ufo.addEventListener("click", () => {
+    if (!isShow) {
+        countForStart--;
 
-export const ufo = () => {
-    ufoTable.addEventListener("click", () => {
-        if (valid) {
-            countForStart++;
+        if (countForStart === 0) {
+            document.body.classList.add("ufo-active");
 
-            if (countForStart !== 5) return;
+            createStars(400);
 
-            valid = !valid;
+            isShow = !isShow;
 
-
-            let timer = setInterval(() => {
+            const timer = setInterval(() => { 
                 let color = generateColor();
+                
+                blocks.setUfoColor(color);
 
-                ufoTable.style.backgroundColor = color;
-                appTitle.style.color = color;
+                blocks.setTitleColor(color);
             }, 600);
-
-            const ufoWidth = parseInt(getComputedStyle(ufoTable).width);
-            const ufoHeight = parseInt(getComputedStyle(ufoTable).height);
-
-            window.addEventListener("click", event => {
-                ufoTable.style.top = event.clientY - ufoHeight/2 + "px";
-                ufoTable.style.left = event.clientX - ufoWidth/2 + "px";
-            });
-
-            setTimeout(() => {
-                ufoTable.addEventListener("dblclick", () => {
-                    clearInterval(timer);
     
-                    ufoTable.style.zIndex = "-1";
-                    ufoTable.style.opacity = "0";
-                    ufoTable.style.cursor = "auto";
+            window.addEventListener("click", event => {
+                blocks.setUfoPosition(event.pageX, event.pageY);
+            });
+    
+            setTimeout(() => {
+                ufo.addEventListener("dblclick", () => {
+                    clearInterval(timer);
+        
+                    ufo.style.zIndex = "-1";
+                    ufo.style.opacity = "0";
+                    ufo.style.cursor = "auto";
+    
+                    title.style.color = "#C5D0E6";
 
-                    appTitle.style.color = "#C5D0E6";
+                    document.body.classList.remove("ufo-active");
+
+                    deleteStars();
+
+                    setTimeout(() => {
+                        ufo.remove();
+                    }, 1000);
                 });
             }, 2000);
-            
-            document.body.classList.add("dark");
-
-            starsMoving();
         }
-    });
-};
+    }
+});

@@ -37,5 +37,5 @@ export const states = {
 
     items: [],
 
-    isShow: false
+    isShow: false,
 }

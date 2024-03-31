@@ -1,6 +1,46 @@
+@function random_range($min, $max) {
+    $random_range: $min + floor(random() * (($max - $min) + 1));
+    @return $random_range;
+}
+
 .stars {
     position: absolute;
     left: 0;
     top: 0;
     z-index: -1;
+
+    &__star {
+        position: absolute;
+
+        width: 5px;
+        height: 8px;
+
+        background-color: $white;
+        border-radius: percentage(random(100));
+
+        @for $index from 1 through $totalStars {
+            $random-x: random(1000000) * 0.0001vw;
+            $random-scale: random(5000) * 0.0001;
+            $fall-duration: random_range(10, 30) * 100ms;
+            $fall-delay: random(30) * -300ms;
+
+            &:nth-child(#{$index}) {
+                opacity: random(10000) * 0.0001;
+    
+                transform: translate($random-x, -10px) scale($random-scale);
+    
+                animation: fall-#{$index} $fall-duration $fall-delay linear infinite;
+            }
+    
+            @keyframes fall-#{$index} {
+                #{100%} {
+                    transform: translate($random-x, $random-x) scale($random-scale);
+                }
+    
+                to {
+                    transform: translate($random-x, 99vh) scale($random-scale);
+                }
+            }
+        }
+    }
 }
