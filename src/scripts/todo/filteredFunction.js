@@ -1,6 +1,5 @@
-export const filteredFunction = states => {
-    const itemsList = states.blocks.itemsList;
-    const filter = states.filter;
+export const filteredFunction = ({blocks, filter}) => {
+    const itemsList = blocks.itemsList;
 
     Array.from(itemsList.childNodes).forEach(item => {
         item.style.display = "flex";

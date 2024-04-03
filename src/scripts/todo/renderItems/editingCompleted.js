@@ -1,8 +1,7 @@
-export const editingCompleted = (event, states) => {
-    const target = event.target;
+export const editingCompleted = ({target}, states) => {
     const editedItem = target.closest(".item");
 
-    if (target.value.trim() === "") {
+    if (!target.value.trim()) {
         states.items.splice(
             0,
             states.items.length,

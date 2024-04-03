@@ -1,6 +1,4 @@
-export const checkoutFilter = event => {
-    const target = event.target;
-
+export const checkoutFilter = ({target}) => {
     if (target.classList.contains("app__button")) {
         const buttons = target.closest(".app__buttons");
 

@@ -1,9 +1,5 @@
-export const keydownEvent = event => {
-    const {key, target} = event;
-
-    if (key === "Enter") {
-        target.blur();
-    }
+export const keydownEvent = ({key, target}) => {
+    if (key === "Enter") target.blur();
 
     if (key === "Escape") {
         const itemContent = target.closest(".item")

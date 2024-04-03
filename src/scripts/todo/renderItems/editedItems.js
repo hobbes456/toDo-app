@@ -1,5 +1,5 @@
-export const editedItems = event => {
-    const editedItem = event.target.closest(".item");
+export const editedItems = ({target}) => {
+    const editedItem = target.closest(".item");
 
     editedItem.classList.add("item_edited");
 

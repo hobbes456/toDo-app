@@ -1,5 +1,5 @@
-export const deletedItems = (event, states) => {
-    const deletedItem = event.target.closest(".item");
+export const deletedItems = ({target}, states) => {
+    const deletedItem = target.closest(".item");
 
     states.items.splice(
         0,

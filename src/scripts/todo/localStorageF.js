@@ -11,18 +11,14 @@ export const localStorageF = states => {
     };
 
     document.addEventListener("DOMContentLoaded", () => {
-        if (!localStorage.getItem("states")) {
-            return;
-        }
+        if (!localStorage.getItem("states")) return;
 
         const pastStates = JSON.parse(localStorage.getItem("states"));
         const pastItems = pastStates.items;
 
         states.filter = pastStates.filter;
 
-        if (pastStates.isShow) {
-            toggleShow(states);
-        }
+        if (pastStates.isShow) toggleShow(states);
 
         items.unshift(...pastItems);
 
@@ -33,9 +29,8 @@ export const localStorageF = states => {
                 item => {
                     item.classList.remove("app__button_active");
                     
-                    if (item.href.split("#").pop() === states.filter) {
+                    if (item.href.split("#").pop() === states.filter)
                         item.classList.add("app__button_active");
-                    }
                 }
             )
 

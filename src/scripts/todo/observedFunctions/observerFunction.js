@@ -11,9 +11,9 @@ export const observerFunction = target => {
         let countLeft = countItemsLeft(itemsList.childNodes);
 
         if (
-            (target.isShow === false && recordLength === 1)
+            (!target.isShow && recordLength === 1)
             ||
-            (target.isShow === true && recordLength === 0)) {
+            (target.isShow && recordLength === 0)) {
             toggleShow(target);
         }
 
