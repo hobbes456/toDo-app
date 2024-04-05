@@ -1,7 +1,8 @@
 import { states } from "./states";
-import { observerFunction } from "./observedFunctions/observerFunction";
 import { inputKeydownEvent } from "./inputKeydownEvent";
-import { blurEvent } from "./blurEvent";
+import { addItems } from "./addItems";
+import { toggleShow } from "./toggleShow";
+import { itemsLeftF } from "./itemsLeft/itemsLeftF";
 import { toggleAllEvent } from "./toggleAllEvent";
 import { checkoutFilter } from "./checkoutFilter";
 import { filteredFunction } from "./filteredFunction";
@@ -10,18 +11,22 @@ import { localStorageF } from "./localStorageF";
 
 const {textInput, toggleAllButton, buttons, clearButton} = states.blocks;
 
-observerFunction(states);
-
 textInput.addEventListener("keydown", event => {
    inputKeydownEvent(event, states);
 });
 
 textInput.addEventListener("blur", () => {
-    blurEvent(states);
+    addItems(states);
+
+    itemsLeftF(states);
+
+    if (!states.isShow && states.items.length === 1) toggleShow(states);
 });
 
 toggleAllButton.addEventListener("click", () => {
     toggleAllEvent(states);
+
+    itemsLeftF(states);
 });
 
 buttons.addEventListener("click", event => {
@@ -32,6 +37,10 @@ buttons.addEventListener("click", event => {
 
 clearButton.addEventListener("click", () => {
     clearButtonEvent(states);
+
+    itemsLeftF(states);
+
+    if (states.isShow && states.items.length === 0) toggleShow(states);
 });
 
 localStorageF(states);

@@ -1,19 +1,19 @@
-export const filteredFunction = ({blocks, filter}) => {
-    const itemsList = blocks.itemsList;
+import { renderItems } from "./renderItems/renderItems";
 
-    Array.from(itemsList.childNodes).forEach(item => {
-        item.style.display = "flex";
+export const filteredFunction = ({blocks, filter, items}) => {
+    // const itemsList = blocks.itemsList;
 
-        if (filter === "active") {
-            if (item.classList.contains("item_completed")) {
-                item.style.display = "none";
-            }
-        }
+    // Array.from(itemsList.childNodes).forEach((item) => item.remove());
 
-        else if (filter === "completed") {
-            if (!item.classList.contains("item_completed")) {
-                item.style.display = "none"
-            }
-        }
-    });
+    // if (filter === "all") {
+    //     itemsList.prepend(...renderItems(items));        
+    // }
+    // else {
+    //     const filteredItems = 
+    //         filter === "completed" ?
+    //         items.filter(item => item.isCompleted) :
+    //         items.filter(item => !item.isCompleted);
+
+    //     itemsList.prepend(...renderItems(filteredItems));
+    // }
 }

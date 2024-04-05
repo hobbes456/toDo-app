@@ -6,6 +6,8 @@ import { completedItems } from "./completedItems";
 import { editedItems } from "./editedItems";
 import { editingCompleted } from "./editingCompleted";
 import { keydownEvent } from "./keydownEvent";
+import { toggleShow } from "../toggleShow";
+import { itemsLeftF } from "../itemsLeft/itemsLeftF";
 
 export const createItem = item => {
     const li = createElementWithClass("li", "item");
@@ -34,6 +36,8 @@ export const createItem = item => {
 
     itemCheckbox.addEventListener("click", event => {
         completedItems(event, states);
+
+        itemsLeftF(states);
     });
 
     itemContent.addEventListener("dblclick", event => {
@@ -42,10 +46,18 @@ export const createItem = item => {
 
     itemButton.addEventListener("click", event => {
         deletedItems(event, states);
+
+        itemsLeftF(states);
+
+        if (states.isShow && states.items.length === 0) toggleShow(states);
     });
 
     itemEditInput.addEventListener("blur", event => {
         editingCompleted(event, states);
+
+        itemsLeftF(states);
+
+        if (states.isShow && states.items.length === 0) toggleShow(states);
     })
 
     itemEditInput.addEventListener("keydown", event => {

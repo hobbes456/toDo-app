@@ -1,7 +1,7 @@
 import { renderItems } from "./renderItems/renderItems";
 import { createItemObject } from "./createItemObject/createItemObject";
 
-export const blurEvent = ({blocks, items}) => {
+export const addItems = ({blocks, items}) => {
     const {textInput, itemsList} = blocks;
 
     const item = createItemObject(textInput.value);

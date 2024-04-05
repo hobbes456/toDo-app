@@ -1,6 +1,6 @@
 import { renderItems } from "./renderItems/renderItems";
 
-export const clearButtonEvent = ({items, blocks}) => {
+export const clearButtonEvent = ({blocks, items}) => {
     const itemsList = blocks.itemsList;
     
     items.splice(

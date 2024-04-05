@@ -1,6 +1,7 @@
 import { renderItems } from "./renderItems/renderItems";
-import { toggleShow } from "./observedFunctions/toggleShow";
+import { toggleShow } from "./toggleShow";
 import { filteredFunction } from "./filteredFunction";
+import { itemsLeftF } from "./itemsLeft/itemsLeftF";
 
 export const localStorageF = states => {
     const {itemsList, buttons} = states.blocks;
@@ -33,6 +34,8 @@ export const localStorageF = states => {
                         item.classList.add("app__button_active");
                 }
             )
+
+        itemsLeftF(states);
 
         filteredFunction(states);
     });
