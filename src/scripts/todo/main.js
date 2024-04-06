@@ -6,6 +6,7 @@ import { itemsLeftF } from "./itemsLeft/itemsLeftF";
 import { toggleAllEvent } from "./toggleAllEvent";
 import { checkoutFilter } from "./checkoutFilter";
 import { filteredFunction } from "./filteredFunction";
+import { delay500 } from "./delay500";
 import { clearButtonEvent } from "./clearButtonEvent";
 import { localStorageF } from "./localStorageF";
 
@@ -20,6 +21,8 @@ textInput.addEventListener("blur", () => {
 
     itemsLeftF(states);
 
+    delay500(filteredFunction, states);
+
     if (!states.isShow && states.items.length === 1) toggleShow(states);
 });
 
@@ -27,6 +30,8 @@ toggleAllButton.addEventListener("click", () => {
     toggleAllEvent(states);
 
     itemsLeftF(states);
+
+    delay500(filteredFunction, states);
 });
 
 buttons.addEventListener("click", event => {
@@ -39,6 +44,8 @@ clearButton.addEventListener("click", () => {
     clearButtonEvent(states);
 
     itemsLeftF(states);
+
+    delay500(filteredFunction, states);
 
     if (states.isShow && states.items.length === 0) toggleShow(states);
 });

@@ -8,6 +8,8 @@ import { editingCompleted } from "./editingCompleted";
 import { keydownEvent } from "./keydownEvent";
 import { toggleShow } from "../toggleShow";
 import { itemsLeftF } from "../itemsLeft/itemsLeftF";
+import { filteredFunction } from "../filteredFunction";
+import { delay500 } from "../delay500";
 
 export const createItem = item => {
     const li = createElementWithClass("li", "item");
@@ -38,6 +40,10 @@ export const createItem = item => {
         completedItems(event, states);
 
         itemsLeftF(states);
+
+        setTimeout(() => {}, 500);
+
+        delay500(filteredFunction, states);
     });
 
     itemContent.addEventListener("dblclick", event => {
@@ -49,6 +55,8 @@ export const createItem = item => {
 
         itemsLeftF(states);
 
+        delay500(filteredFunction, states);
+
         if (states.isShow && states.items.length === 0) toggleShow(states);
     });
 
@@ -56,6 +64,8 @@ export const createItem = item => {
         editingCompleted(event, states);
 
         itemsLeftF(states);
+
+        delay500(filteredFunction, states);
 
         if (states.isShow && states.items.length === 0) toggleShow(states);
     })
