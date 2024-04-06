@@ -41,8 +41,6 @@ export const createItem = item => {
 
         itemsLeftF(states);
 
-        setTimeout(() => {}, 500);
-
         delay500(filteredFunction, states);
     });
 
@@ -55,7 +53,7 @@ export const createItem = item => {
 
         itemsLeftF(states);
 
-        delay500(filteredFunction, states);
+        filteredFunction(states);
 
         if (states.isShow && states.items.length === 0) toggleShow(states);
     });
@@ -65,7 +63,7 @@ export const createItem = item => {
 
         itemsLeftF(states);
 
-        delay500(filteredFunction, states);
+        filteredFunction(states);
 
         if (states.isShow && states.items.length === 0) toggleShow(states);
     })

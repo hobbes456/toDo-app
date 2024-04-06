@@ -45,7 +45,7 @@ clearButton.addEventListener("click", () => {
 
     itemsLeftF(states);
 
-    delay500(filteredFunction, states);
+    filteredFunction(states);
 
     if (states.isShow && states.items.length === 0) toggleShow(states);
 });
