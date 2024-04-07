@@ -54,10 +54,6 @@
 
         transition: color 150ms ease-in-out;
 
-        &_completed {
-            color: $green_1;
-        }
-
         &::before {
             position: absolute;
             top: -40px;
