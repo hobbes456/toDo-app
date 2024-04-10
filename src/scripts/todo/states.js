@@ -8,10 +8,6 @@ export const states = {
             return this.header.querySelector("input");
         },
 
-        get toggleAllInput() {
-            return this.content.querySelector("#toggle-all");
-        },
-
         get toggleAllButton() {
             return this.content.querySelector(".app__toggle-all");
         },

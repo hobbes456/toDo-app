@@ -9,10 +9,9 @@ export const filteredFunction = ({blocks, filter, items}) => {
         itemsList.prepend(...renderItems(items));        
     }
     else {
-        const filteredItems = 
-            filter === "completed" ?
-            items.filter(item => item.isCompleted) :
-            items.filter(item => !item.isCompleted);
+        const filteredItems = items.filter(
+            item => filter === "completed" ? item.isCompleted : !item.isCompleted
+        );
 
         itemsList.prepend(...renderItems(filteredItems));
     }

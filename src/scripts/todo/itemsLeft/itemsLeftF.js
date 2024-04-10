@@ -5,7 +5,5 @@ export const itemsLeftF = ({blocks, items}) => {
 
     const countLeft = countItemsLeft(items);
 
-    countLeft === 1 ?
-        itemsLeft.textContent = `${countLeft} item left` :
-        itemsLeft.textContent = `${countLeft} items left`;
+    itemsLeft.textContent = `${countLeft} ${countLeft === 1 ? "item" : "items"} left`;
 }
